@@ -17,7 +17,12 @@ trait Controller {
 }
 
 object Action {
-  def test(block: () => String) = {
-    (req: Request, resp: Response) => block
+  
+  def apply(block: => Result) = {
+    block
+  }
+  
+  def apply(block: Request => String)(implicit req: Request) = { 
+    block(req)
   }
 }

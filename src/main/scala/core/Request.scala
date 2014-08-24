@@ -15,6 +15,8 @@ case class Request(request: HttpServletRequest) extends HttpServletRequestWrappe
   
   val contextPath = request.getContextPath()
   
+  val method = request.getMethod()
+  
   def param(parameter: String): Option[String] = Option(request.getParameter(parameter))
 
   def params(parameter: String) : Option[Array[String]] = Option(request.getParameterValues(parameter))
