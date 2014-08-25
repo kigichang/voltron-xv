@@ -1,4 +1,4 @@
-package filter
+package core
 
 import javax.servlet.Filter
 import javax.servlet.FilterConfig
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse
 
 import controllers._
 
-class Init extends Filter { self => 
+class Startup extends Filter { self => 
 
   override def init(config: FilterConfig) {
     

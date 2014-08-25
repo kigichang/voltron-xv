@@ -11,12 +11,12 @@
   </welcome-file-list>
   
   <filter>
-    <filter-name>Init</filter-name>
-    <filter-class>filter.Init</filter-class>
+    <filter-name>Startup</filter-name>
+    <filter-class>core.Starup</filter-class>
   </filter>
   
   <filter-mapping>
-    <filter-name>Init</filter-name>
+    <filter-name>Startup</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>

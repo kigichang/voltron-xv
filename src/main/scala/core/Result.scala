@@ -2,7 +2,18 @@ package core
 
 import javax.servlet.http.{HttpServletResponse => Resp}
 
-class Result(status: Int)
+class Result(status: Int) {
+  private val cookies = new Cookies
+  
+  def withCookie(cookie: Cookie, others: Cookie*): Result = {
+    Seq(cookie) ++ others foreach { c => cookies.update(c) }
+    this
+  }
+  
+  private[core] def writeCookie(implicit resp: Response) {
+    cookies.cookies.values.foreach(cookie => resp.addCookie(cookie.cookie))
+  }
+}
 
 trait Informational
 

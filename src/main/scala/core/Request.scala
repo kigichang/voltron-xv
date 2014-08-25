@@ -1,7 +1,6 @@
 package core
 
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequestWrapper
 
 case class Request(request: HttpServletRequest) extends HttpServletRequestWrapper(request) {
@@ -17,17 +16,13 @@ case class Request(request: HttpServletRequest) extends HttpServletRequestWrappe
   
   val method = request.getMethod()
   
+  protected lazy val cookies = new Cookies(request.getCookies())
+  
   def param(parameter: String): Option[String] = Option(request.getParameter(parameter))
 
   def params(parameter: String) : Option[Array[String]] = Option(request.getParameterValues(parameter))
   
-  def cookie(name: String): Option[Cookie] = {
-    
-    request.getCookies() match {
-      case cookies if cookies != null => cookies.filter(_.getName() == name) 
-      case _ => None
-    }
-  }
+  def cookie(name: String) = cookies(name)
   
   lazy val internSession = request.getSession()
   
