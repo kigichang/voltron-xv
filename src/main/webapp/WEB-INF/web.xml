@@ -12,7 +12,7 @@
   
   <filter>
     <filter-name>Startup</filter-name>
-    <filter-class>core.Starup</filter-class>
+    <filter-class>core.Startup</filter-class>
   </filter>
   
   <filter-mapping>

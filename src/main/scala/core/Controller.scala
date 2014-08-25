@@ -2,17 +2,11 @@ package core
 
 trait Controller {
 
-  val todo = {
-    
-  }
+  val todo = new NotFound
   
-  def before = todo
-  
-  def after = todo
-  
-  def rendering = todo
-  
-  def rendered = todo
+}
+
+object ActionBuilder {
   
 }
 
