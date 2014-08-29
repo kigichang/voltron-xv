@@ -2,13 +2,14 @@ package router
 
 import core._
 import controllers._
+import core.Methods._
 
 object Router {
  
-  def route(path: String)(implicit request: Request): Result = { println(path); path match {
+  def route(routee: (Method, List[String]))(implicit request: Request): Result = routee match {
     
-    //case Path("GET", "abc", "def", name, pathInfo @_*) => { println(pathInfo.mkString("/")); Application.hello(name) }
-    case Path("GET", "abc", "def", name, pathInfo @_*) => Application.hello(name)
-    case _  => Application.hello("stranger")
-  }}
+    case (GET, "abc" :: name :: xx) => Application.hello(name)
+    
+    case _ => Ok("others")
+  } 
 }

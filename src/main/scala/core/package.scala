@@ -6,12 +6,12 @@ package object core {
   
   type HttpRequest = javax.servlet.http.HttpServletRequest
   type HttpResponse = javax.servlet.http.HttpServletResponse
-  
+  type Method = Methods.Value
   
   implicit def firstElementToOption[T](array: Array[T]) = if (array != null && array.length > 0) Some(array(0)) else None
   implicit def viewToString(view: View) = view.contents
   
-  implicit val title = "title" + System.currentTimeMillis()
+  //implicit val title = "title" + System.currentTimeMillis()
   
   implicit class Request(request: HttpRequest) extends HttpServletRequestWrapper(request) {
     
@@ -25,13 +25,15 @@ package object core {
   
     val contextPath = request.getContextPath()
   
-    val method = request.getMethod()
+    val method = Methods.fromRaw(request.getMethod())
     
     protected lazy val cookies = new Cookies(request.getCookies())
   
     def param(parameter: String): Option[String] = Option(request.getParameter(parameter))
 
-    def params(parameter: String) : Option[Array[String]] = Option(request.getParameterValues(parameter))
+    def params(parameter: String) : List[String] = 
+      if (request.getParameterValues(parameter) != null) request.getParameterValues(parameter).toList
+      else List()
   
     def cookie(name: String) = cookies(name)
   

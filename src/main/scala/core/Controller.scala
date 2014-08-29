@@ -5,18 +5,21 @@ trait Controller {
   val todo = new NotFound
   
 }
-
+/*
 object ActionBuilder {
-  
+  def apply(block1: => Result)(block2: => Result => Result) {
+    block2(block1)
+  }
 }
 
 object Action {
   
-  def apply(block: => Result) = {
+  def apply(block: Unit => Result) = {
     block
   }
   
-  def apply(block: Request => String)(implicit req: Request) = { 
-    block(req)
+  def apply(block: Request => Result)(implicit req: Request) = { 
+    implicit req: Request => block(req)
   }
 }
+*/

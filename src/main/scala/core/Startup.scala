@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import controllers._
 import router._
+import org.apache.commons.lang3.StringUtils._
 
 class Startup extends Filter { self => 
 
@@ -25,13 +26,12 @@ class Startup extends Filter { self =>
     println(req.queryString)
     println(req.requestURI)
     println(req.getContextPath())
-    println(title)
-    
+
     for { c <- req.cookie("abc") } { println(c)}
     
-    val path = org.apache.commons.lang3.StringUtils.replace(req.requestURI , req.contextPath , "")
+    val path = replace(req.requestURI , req.contextPath , "")
     
-    implicit val result = Router.route(req.method + path)
+    implicit val result = Router.route(req.method -> split(path, '/').toList)
     val resp: Response = response.asInstanceOf[HttpServletResponse]
     
     result match {

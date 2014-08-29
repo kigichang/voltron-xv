@@ -6,10 +6,9 @@ import core.http.Cookie._
 
 object Application extends Controller {
 
-  def hello(name: String) = Action {
-    Ok(Main(name)).withCookie(Cookie("abc", Some(System.currentTimeMillis())))
+  
+  def hello(name: String)(implicit request: Request): Result = {
+    Ok(s"hello, $name")
   }
-  
-  
   
 }

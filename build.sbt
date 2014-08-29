@@ -7,7 +7,7 @@ version := "1.0"
 scalaVersion := "2.11.1"
 
 // Change this to another test framework if you prefer
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.1.6" % "test"
+libraryDependencies += "org.scalatest" % "scalatest" % "2.1.6" % "test"
 
 // Servlet
 libraryDependencies += "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided"
