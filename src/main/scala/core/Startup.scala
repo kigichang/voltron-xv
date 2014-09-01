@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse
 import controllers._
 import router._
 import org.apache.commons.lang3.StringUtils._
+import org.apache.commons.fileupload.servlet.ServletFileUpload
 
 class Startup extends Filter { self => 
 
@@ -21,8 +22,8 @@ class Startup extends Filter { self =>
   override def doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
     implicit val req: Request = request.asInstanceOf[HttpServletRequest]
     
+    
     println(req.requestTime)
-    println(req.pathInfo)
     println(req.queryString)
     println(req.requestURI)
     println(req.getContextPath())

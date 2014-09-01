@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse
 
 import core._
 
+
 abstract class ActionServlet extends HttpServlet {
 
   def route()
@@ -13,7 +14,7 @@ abstract class ActionServlet extends HttpServlet {
   
   override def doGet(req: HttpServletRequest, resp: HttpServletResponse) {
     val request: Request = req
-    //val response: Response = resp
+    
     
   }
   
