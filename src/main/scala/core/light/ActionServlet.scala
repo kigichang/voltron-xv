@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-import core._
+import core.http.Request._
+import core.http.Response._
+
 
 
 abstract class ActionServlet extends HttpServlet {

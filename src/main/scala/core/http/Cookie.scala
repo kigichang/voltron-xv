@@ -89,6 +89,8 @@ object Cookie {
   	def remove(cookie: Cookie): Cookies = {cookie.value = None; cookie.maxAge = 0; update(cookie) }
   
   }
+  
+  implicit def cookieToHttpCookie(cookie: Cookie): HttpCookie = cookie.cookie 
 }
 
 

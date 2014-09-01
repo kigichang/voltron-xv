@@ -5,13 +5,16 @@ import javax.servlet.FilterConfig
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
-import core._
+//import core._
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import controllers._
 import router._
 import org.apache.commons.lang3.StringUtils._
-import org.apache.commons.fileupload.servlet.ServletFileUpload
+//import org.apache.commons.fileupload.servlet.ServletFileUpload
+import scala.util.Try
+import core.http.Request._
+import core.http.Response._
 
 class Startup extends Filter { self => 
 
@@ -21,7 +24,7 @@ class Startup extends Filter { self =>
   
   override def doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
     implicit val req: Request = request.asInstanceOf[HttpServletRequest]
-    
+    implicit val resp: Response = response.asInstanceOf[HttpServletResponse]
     
     println(req.requestTime)
     println(req.queryString)
@@ -32,12 +35,10 @@ class Startup extends Filter { self =>
     
     val path = replace(req.requestURI , req.contextPath , "")
     
-    implicit val result = Router.route(req.method -> split(path, '/').toList)
-    val resp: Response = response.asInstanceOf[HttpServletResponse]
-    
-    result match {
-      case Ok(contents) => resp.getWriter().println(contents)
+    val result = Try {
+      Router.route(req.method -> split(path, '/').toList)
     }
+    
     
   }
   

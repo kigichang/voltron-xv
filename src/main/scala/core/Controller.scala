@@ -2,7 +2,7 @@ package core
 
 trait Controller {
 
-  val todo = new NotFound
+  val todo = Unit
   
 }
 /*
