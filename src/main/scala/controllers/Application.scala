@@ -1,12 +1,9 @@
 package controllers
 
-import core.Controller
-
-import views._
 import core.http.Response._
 import core.http.Request._
 import core.http.Cookie._
-
+import views._
 
 
 object Application extends Controller {

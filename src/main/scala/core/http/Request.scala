@@ -14,7 +14,10 @@ object Request {
   import javax.servlet.http.HttpServletRequest
   import core.Request
   
+  type Controller = core.Controller
   type Method = Methods.Value
+  type HttpServlet = javax.servlet.http.HttpServlet
+  type HttpServletRequest = javax.servlet.http.HttpServletRequest
   
   class GeneralRequest(request: HttpServletRequest) extends Request(request) {
   

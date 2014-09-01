@@ -5,6 +5,7 @@ object Response {
   import javax.servlet.http.HttpServletResponse
   type Response = core.Response
   type Request = core.Request
+  type HttpServletResponse = javax.servlet.http.HttpServletResponse
   
   def apply(response: HttpServletResponse) = new Response(response)
   
